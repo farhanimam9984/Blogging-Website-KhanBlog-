@@ -1,0 +1,1 @@
+export const BACKEND_URL = https://blogging-website-khanblog-2.onrender.com
