@@ -74,68 +74,84 @@ function Register() {
 
   return (
     <div>
-      <div className="min-h-screen flex items-center justify-center bg-gray-100">
-        <div className="w-full max-w-md bg-white shadow-md rounded-lg p-8">
+      <div className="min-h-screen flex items-center justify-center bg-gray-900">
+        <div className="w-full max-w-md bg-gray-700 shadow-md rounded-lg p-8 m-10">
           <form onSubmit={handleRegister}>
-            <div className="font-semibold text-green-500 text-xl items-center text-center">
-              Khan<span className="text-blue-500">Blog</span>
+             <div className="font-extrabold text-4xl bg-gradient-to-r  from-purple-600 via-rose-400 to-purple-400 bg-clip-text text-transparent  items-center text-center ">
+              Knowledge<span className=" font-extrabold  text-4xl bg-gradient-to-r from-purple-600 to-pink-500 bg-clip-text ">Nest</span>
             </div>
-            <h1 className="text-xl font-semibold mb-6">Register</h1>
-            <select
+            <h1 className="text-2xl font-extrabold mb-6 flex justify-center text-center  mt-4 bg-gradient-to-r from-blue-500 via-emerald-400  to-purple-600 rounded-2xl bg-clip-text text-transparent">Please Register Here!!</h1>
+{/* Select option role */}
+           <select
               value={role}
               onChange={(e) => setRole(e.target.value)}
-              className="w-full p-2 mb-4 border rounded-md"
+              className=" w-full rounded-lg  py-2 focus:outline-none bg-gray-400  text-black mb-4  border-gray-500 border-2 px-4 bg-gary-50"
             >
-              <option value="">Select Role</option>
-              <option value="user">user</option>
-              <option value="admin">admin</option>
+              <option selected className="text-black font-semibold" value="" disabled>Select Role</option>
+              <option className="text-lg" value="user">USER</option>
+              <option  className="text-lg" value="admin">ADMIN</option>
             </select>
+
+            {/* Name Input */}
             <div className="mb-4">
               <input
                 type="text"
                 placeholder="Your Name"
                 value={name}
                 onChange={(e) => setName(e.target.value)}
-                className="w-full p-2  border rounded-md"
+               className="w-full px-6 py-3 border-2 border-gray-500 text-white rounded-xl focus:outline-none"
               />
             </div>
+
+            {/* Email Input */}
             <div className="mb-4">
               <input
                 type="email"
                 placeholder="Your Email Address"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                className="w-full p-2  border rounded-md"
+               className="w-full px-6 py-3 border-2 border-gray-500 text-white rounded-xl focus:outline-none"
               />
+
+              
             </div>
+          {/* Phone number input */}
             <div className="mb-4">
               <input
                 type="number"
                 placeholder="Your Phone Number"
                 value={phone}
                 onChange={(e) => setPhone(e.target.value)}
-                className="w-full p-2  border rounded-md"
+               className="w-full px-6 py-3 border-2 border-gray-500 text-white rounded-xl focus:outline-none"
               />
+
+              
             </div>
+            {/* Password input */}
             <div className="mb-4">
               <input
                 type="password"
                 placeholder="Your Password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
-                className="w-full p-2  border rounded-md"
+                className="w-full px-6 py-3 border-2 border-gray-500 text-white rounded-xl focus:outline-none"
               />
             </div>
+
+            {/* Seelct Education input */}
             <select
               value={education}
               onChange={(e) => setEducation(e.target.value)}
-              className="w-full p-2 mb-4 border rounded-md"
+              className=" w-full rounded-lg  py-2 focus:outline-none bg-gray-400  text-black mb-4  border-gray-500 border-2 px-4 bg-gary-50"
             >
-              <option value="">Select Your Education</option>
+              <option value="" disabled className="text-black">Select Your Education</option>
               <option value="BCA ">BCA</option>
               <option value="MCA ">MCA</option>
               <option value="MBA ">MBA</option>
               <option value="BBA ">BBA</option>
+              <option value="BBA ">B.Tech</option>
+              <option value="BBA ">BSC</option>
+              <option value="BBA ">Other</option>
             </select>
             <div className="flex items-center mb-4">
               <div className="photo w-20 h-20 mr-4">
@@ -147,18 +163,19 @@ function Register() {
               <input
                 type="file"
                 onChange={changePhotoHandler}
-                className="w-full p-2  border rounded-md"
+                // placeholder="Upload Image"
+                className="w-full p-2  border rounded-xl"
               />
             </div>
-            <p className="text-center mb-4">
+            <p className="text-center mb-4 text-white">
               Already registered?{" "}
-              <Link to={"/login"} className="text-blue-600">
+              <Link to={"/login"} className="text-purple-500 text-lg">
                 Login Now
               </Link>
             </p>
             <button
               type="submit"
-              className="w-full p-2 bg-blue-500 hover:bg-blue-800 duration-300 rounded-md text-white"
+              className="w-full p-2 bg-gradient-to-r from-purple-500 via-pink-400 to-rose-400  rounded-2xl text-black text-xl font-serif "
             >
               Register
             </button>

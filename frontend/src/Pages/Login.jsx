@@ -51,52 +51,54 @@ function Login() {
 
   return (
     <div>
-      <div className="min-h-screen flex items-center justify-center bg-gray-100">
-        <div className="w-full max-w-md bg-white shadow-md rounded-lg p-8">
+      <div className="min-h-screen flex items-center justify-center bg-gray-900">
+        <div className="w-full max-w-md bg-gray-700 shadow-md rounded-2xl p-8">
           <form onSubmit={handleLogin}>
-            <div className="font-semibold text-green-500 text-xl items-center text-center">
-              Khan<span className="text-blue-500">Blog</span>
+            <div className="font-extrabold text-4xl bg-gradient-to-r  from-purple-600 via-rose-400 to-purple-400 bg-clip-text text-transparent  items-center text-center ">
+              Knowledge<span className="bg-gradient-to-r from-purple-600 to-pink-500 bg-clip-text ">Nest</span>
             </div>
-            <h1 className="text-xl font-semibold mb-6">Login</h1>
+            <h1 className="text-2xl font-extrabold mb-6 flex justify-center text-center  mt-4 bg-gradient-to-r from-blue-500 via-emerald-400  to-purple-600 rounded-2xl bg-clip-text text-transparent">Please Login Here!!</h1>
+            {/* Select option bar */}
             <select
               value={role}
               onChange={(e) => setRole(e.target.value)}
-              className="w-full p-2 mb-4 border rounded-md"
+              className=" w-full rounded-lg  py-2 focus:outline-none bg-gray-400  text-black mb-4  border-gray-500 border-2 px-4 bg-gary-50"
             >
-              <option value="">Select Role</option>
-              <option value="user">user</option>
-              <option value="admin">admin</option>
+              <option selected  value="" disabled>Select Role</option>
+              <option className="text-lg" value="user">USER</option>
+              <option  className="text-lg" value="admin">ADMIN</option>
             </select>
-
+{/* Email Input */}
             <div className="mb-4">
               <input
                 type="email"
-                placeholder="Your Email Address"
+                placeholder="Enter Your Email Address"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                className="w-full p-2  border rounded-md"
+                className="w-full px-6 py-3 border-gray-500 border-2 rounded-xl text-white focus:outline-none"
               />
             </div>
+            {/* Password Input */}
 
             <div className="mb-4">
               <input
                 type="password"
-                placeholder="Your Password"
+                placeholder="Enter Your Password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
-                className="w-full p-2  border rounded-md"
+                className="w-full px-6 py-3 border-2 border-gray-500 text-white rounded-xl focus:outline-none"
               />
             </div>
 
-            <p className="text-center mb-4">
+            <p className="text-center mb-4 text-white">
               New User?{" "}
-              <Link to={"/register"} className="text-blue-600">
-                Register Now
+              <Link to={"/register"} className="text-purple-500 text-lg">
+                Register Here
               </Link>
             </p>
             <button
               type="submit"
-              className="w-full p-2 bg-blue-500 hover:bg-blue-800 duration-300 rounded-md text-white"
+              className="w-full p-2 bg-gradient-to-r from-purple-500 via-pink-400 to-rose-400  rounded-2xl text-black text-xl font-serif "
             >
               Login
             </button>

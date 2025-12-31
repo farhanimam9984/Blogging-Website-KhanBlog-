@@ -8,16 +8,17 @@ import toast from "react-hot-toast";
 
 function Sidebar({ setComponent }) {
   const { profile, setIsAuthenticated } = useAuth();
-  // console.log(profile?.user);
   const navigateTo = useNavigate();
-
   const [show, setShow] = useState(false);
 
   const handleComponents = (value) => {
     setComponent(value);
+    setShow(false);
   };
+
   const gotoHome = () => {
     navigateTo("/");
+    setShow(false);
   };
 
   const handleLogout = async (e) => {
@@ -28,77 +29,100 @@ function Sidebar({ setComponent }) {
         { withCredentials: true }
       );
       toast.success(data.message);
-       localStorage.removeItem("jwt"); // deleting token in localStorage so that if user logged out it will goes to login page
+      localStorage.removeItem("jwt");
       setIsAuthenticated(false);
       navigateTo("/login");
     } catch (error) {
-      console.log(error);
-      toast.error(error.data.message || "Failed to logout");
+      toast.error("Failed to logout");
     }
   };
 
   return (
     <>
+      {/* Mobile Menu Button */}
       <div
-        className="sm:hidden fixed top-4 left-4 z-50"
-        onClick={() => setShow(!show)}
+        className="sm:hidden fixed top-4 left-4 z-50 bg-white shadow-md p-2 rounded-full"
+        onClick={() => setShow(true)}
       >
-        <CiMenuBurger className="text-2xl" />
+        <CiMenuBurger className="text-2xl text-gray-700" />
       </div>
-      <div
-        className={`w-64 h-full shadow-lg fixed top-0 left-0 bg-gray-50 transition-transform duration-300 transform sm:translate-x-0 ${
-          show ? "translate-x-0" : "-translate-x-full"
-        }`}
+
+      {/* Sidebar */}
+      <aside
+        className={`fixed top-0 left-0 h-screen w-64 bg-white shadow-xl z-40 transform transition-transform duration-300
+        ${show ? "translate-x-0" : "-translate-x-full"} sm:translate-x-0`}
       >
+        {/* Close Button (Mobile) */}
         <div
-          className="sm:hidden absolute top-4 right-4 text-xl cursor-pointer"
-          onClick={() => setShow(!show)}
+          className="sm:hidden absolute top-4 right-4 cursor-pointer"
+          onClick={() => setShow(false)}
         >
-          <BiSolidLeftArrowAlt className="text-2xl" />
+          <BiSolidLeftArrowAlt className="text-2xl text-gray-600" />
         </div>
-        <div className="text-center">
+
+        {/* Profile Section */}
+        <div className="bg-gradient-to-r from-blue-600 to-indigo-600 p-6 text-center">
           <img
-            className="w-24 h-24 rounded-full mx-auto mb-2"
             src={profile?.user?.photo?.url}
-            alt=""
+            alt="profile"
+            className="w-24 h-24 rounded-full mx-auto border-4 border-white shadow-md"
           />
-          <p className="text-lg font-semibold">{profile?.user?.name}</p>
+          <h2 className="mt-3 text-lg font-semibold text-white">
+            {profile?.user?.name}
+          </h2>
+          <p className="text-sm text-blue-100">
+            {profile?.user?.role}
+          </p>
         </div>
-        <ul className="space-y-6 mx-4">
-          <button
+
+        {/* Navigation */}
+        <ul className="mt-8 space-y-3 px-4">
+          <SidebarButton
+            label="My Blogs"
             onClick={() => handleComponents("My Blogs")}
-            className="w-full px-4 py-2 bg-green-500 rounded-lg hover:bg-green-700 transition duration-300"
-          >
-            MY BLOGS
-          </button>
-          <button
+          />
+          <SidebarButton
+            label="Create Blog"
             onClick={() => handleComponents("Create Blog")}
-            className="w-full px-4 py-2 bg-blue-400 rounded-lg hover:bg-blue-700 transition duration-300"
-          >
-            CREATE BLOG
-          </button>
-          <button
+          />
+          <SidebarButton
+            label="My Profile"
             onClick={() => handleComponents("My Profile")}
-            className="w-full px-4 py-2 bg-pink-500 rounded-lg hover:bg-pink-700 transition duration-300"
-          >
-            MY PROFILE
-          </button>
-          <button
+          />
+          <SidebarButton
+            label="Home"
+            color="red"
             onClick={gotoHome}
-            className="w-full px-4 py-2 bg-red-500 rounded-lg hover:bg-red-700 transition duration-300"
-          >
-            HOME
-          </button>
-          <button
+          />
+          <SidebarButton
+            label="Logout"
+            color="yellow"
             onClick={handleLogout}
-            className="w-full px-4 py-2 bg-yellow-500 rounded-lg hover:bg-yellow-700 transition duration-300"
-          >
-            LOGOUT
-          </button>
+          />
         </ul>
-      </div>
+      </aside>
     </>
   );
 }
+
+/* Reusable Button Component */
+const SidebarButton = ({ label, onClick, color = "blue" }) => {
+  const colors = {
+    blue: "bg-blue-100 text-blue-700 hover:bg-blue-200",
+    red: "bg-red-100 text-red-700 hover:bg-red-200",
+    yellow: "bg-yellow-100 text-yellow-700 hover:bg-yellow-200",
+  };
+
+  return (
+    <li>
+      <button
+        onClick={onClick}
+        className={`w-full py-3 rounded-xl font-medium transition-all duration-200 ${colors[color]}`}
+      >
+        {label}
+      </button>
+    </li>
+  );
+};
 
 export default Sidebar;

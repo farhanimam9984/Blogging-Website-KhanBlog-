@@ -26,97 +26,107 @@ function Contact() {
       toast.error ("An error occurred");
     }
   };
-  return (
-    <div>
-      <div className="bg-gray-50 min-h-screen flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-4xl w-full space-y-8 bg-white p-10 rounded-lg shadow-lg">
-          <div className="text-center">
-            <h2 className="text-3xl font-extrabold text-gray-900">
-              Contact Us
-            </h2>
-          </div>
-          <div className="flex flex-col md:flex-row justify-between">
-            <div className="w-full md:w-1/2 mb-8 md:mb-0 md:pr-4">
-              <h3 className="text-lg font-medium text-gray-700 mb-4">
-                Send us a message
-              </h3>
-              <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
-                <div>
-                  <input
-                    type="text"
-                    name="username"
-                    placeholder="Your Name"
-                    className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500"
-                    {...register("username", { required: true })}
-                  />
-                  {errors.username && (
-                    <span className="text-sm text-red-500 font-semibold">
-                      This field is required
-                    </span>
-                  )}
-                </div>
-                <div>
-                  <input
-                    type="email"
-                    name="email"
-                    placeholder="Your Email"
-                    className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500"
-                    {...register("email", { required: true })}
-                  />
-                  {errors.email && (
-                    <span className="text-sm text-red-500 font-semibold">
-                      This field is required
-                    </span>
-                  )}
-                </div>
-                <div>
-                  <textarea
-                    name="message"
-                    placeholder="Your Message"
-                    className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500"
-                    {...register("message", { required: true })}
-                  />
-                  {errors.message && (
-                    <span className="text-sm text-red-500 font-semibold">
-                      This field is required
-                    </span>
-                  )}
-                </div>
-                <div>
-                  <button
-                    type="submit"
-                    className="w-full bg-black text-white px-4 py-2 rounded-lg hover:bg-yellow-600 duration-300 "
-                  >
-                    Send Message
-                  </button>
-                </div>
-              </form>
-            </div>
-            <div className="w-full md:w-1/2 md:pl-4">
-              <h3 className="text-lg font-medium text-gray-700 mb-4">
+return (
+  <div className="min-h-screen bg-gradient-to-br from-gray-900 via-gray-800 to-black flex items-center justify-center px-4 py-12">
+    <div className="max-w-5xl w-full bg-white/10 backdrop-blur-lg border border-white/20 rounded-2xl shadow-2xl p-10">
+      
+      {/* Heading */}
+      <div className="text-center mb-10">
+        <h2 className="text-4xl font-extrabold bg-gradient-to-r from-pink-500 to-purple-500 bg-clip-text text-transparent">
+          Contact Us
+        </h2>
+        <p className="text-gray-300 mt-2">
+          We'd love to hear from you
+        </p>
+      </div>
 
-                Contact Information
-              </h3>
-              <ul className="space-y-4">
-                <li className="flex items-center space-x-2">
-                  <FaPhone className="text-red-500" />
-                  <span>+91 8253470039</span>
-                </li>
-                <li className="flex items-center space-x-2">
-                  <FaEnvelope className="text-pink-500" />
-                  <span>farhan@gmail.com</span>
-                </li>
-                <li className="flex items-center space-x-2">
-                  <FaMapMarkerAlt className="text-green-500" />
-                  <span>Dhanbad, Jharkhand, India</span>
-                </li>
-              </ul>
+      <div className="flex flex-col md:flex-row gap-10">
+        
+        {/* Contact Form */}
+        <div className="w-full md:w-1/2">
+          <h3 className="text-xl font-semibold text-white mb-6">
+            Send us a message
+          </h3>
+
+          <form onSubmit={handleSubmit(onSubmit)} className="space-y-5">
+            <div>
+              <input
+                type="text"
+                placeholder="Your Name"
+                className="w-full px-4 py-3 rounded-lg bg-gray-900 text-white border border-gray-700 focus:ring-2 focus:ring-pink-500 focus:outline-none"
+                {...register("username", { required: true })}
+              />
+              {errors.username && (
+                <span className="text-sm text-red-400">
+                  This field is required
+                </span>
+              )}
             </div>
-          </div>
+
+            <div>
+              <input
+                type="email"
+                placeholder="Your Email"
+                className="w-full px-4 py-3 rounded-lg bg-gray-900 text-white border border-gray-700 focus:ring-2 focus:ring-purple-500 focus:outline-none"
+                {...register("email", { required: true })}
+              />
+              {errors.email && (
+                <span className="text-sm text-red-400">
+                  This field is required
+                </span>
+              )}
+            </div>
+
+            <div>
+              <textarea
+                rows="4"
+                placeholder="Your Message"
+                className="w-full px-4 py-3 rounded-lg bg-gray-900 text-white border border-gray-700 focus:ring-2 focus:ring-green-500 focus:outline-none resize-none"
+                {...register("message", { required: true })}
+              />
+              {errors.message && (
+                <span className="text-sm text-red-400">
+                  This field is required
+                </span>
+              )}
+            </div>
+
+            <button
+              type="submit"
+              className="w-full py-3 rounded-lg font-semibold text-white bg-gradient-to-r from-pink-500 via-purple-500 to-indigo-500 hover:opacity-90 transition"
+            >
+              Send Message
+            </button>
+          </form>
         </div>
+
+        {/* Contact Info */}
+        <div className="w-full md:w-1/2 text-white">
+          <h3 className="text-xl font-semibold mb-6">
+            Contact Information
+          </h3>
+
+          <ul className="space-y-6">
+            <li className="flex items-center gap-4 bg-gray-900 p-4 rounded-lg">
+              <FaPhone className="text-pink-500 text-xl" />
+              <span>+91 8253470039</span>
+            </li>
+
+            <li className="flex items-center gap-4 bg-gray-900 p-4 rounded-lg">
+              <FaEnvelope className="text-purple-500 text-xl" />
+              <span>mdfarhanimam0786@gmail.com</span>
+            </li>
+
+            <li className="flex items-center gap-4 bg-gray-900 p-4 rounded-lg">
+              <FaMapMarkerAlt className="text-green-500 text-xl" />
+              <span>Dhanbad, Jharkhand, India</span>
+            </li>
+          </ul>
+        </div>
+
       </div>
     </div>
-  );
+  </div>
+);
 }
-
 export default Contact;

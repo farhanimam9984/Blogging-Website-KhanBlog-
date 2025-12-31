@@ -3,18 +3,18 @@ import { useAuth } from "../context/AuthProvider";
 import { Link } from "react-router-dom";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
+
 function Trending() {
   const { blogs } = useAuth();
 
   const responsive = {
     superLargeDesktop: {
-      // the naming can be any, depends on you.
       breakpoint: { max: 4000, min: 3000 },
       items: 5,
     },
     desktop: {
       breakpoint: { max: 3000, min: 1024 },
-      items: 5,
+      items: 4,
     },
     tablet: {
       breakpoint: { max: 1024, min: 464 },
@@ -25,56 +25,74 @@ function Trending() {
       items: 1,
     },
   };
+
   return (
-    <div className=" container mx-auto">
-      <h1 className=" text-2xl font-semibold mb-4 px-8 text-blue-600">Trending</h1>
-      <Carousel responsive={responsive}>
-        {blogs && blogs.length > 0 ? (
-          blogs.slice(0, 6).map((element) => {
-            return (
-              <div
+    <div className="bg-gray-50 py-14">
+      <div className="max-w-7xl mx-auto px-6">
+        {/* Section Header */}
+        <div className="flex items-center justify-between mb-8">
+          <h1 className="text-3xl font-bold text-gray-800">
+            🔥 Trending Reads
+          </h1>
+          <span className="text-sm text-gray-500">
+            Most loved by readers
+          </span>
+        </div>
+
+        <Carousel responsive={responsive} itemClass="px-3">
+          {blogs && blogs.length > 0 ? (
+            blogs.slice(0, 6).map((element) => (
+              <Link
+                to={`/blog/${element._id}`}
                 key={element._id}
-                className="p-4 bg-white  border-black border-2 rounded-lg shadow-md mx-2"
+                className="block group"
               >
-                <Link to={`/blog/${element._id}`}>
-                  <div className="relative">
+                <div className="bg-white rounded-xl overflow-hidden shadow-md hover:shadow-xl transition duration-300">
+                  {/* Image */}
+                  <div className="relative h-56 overflow-hidden">
                     <img
                       src={element.blogImage.url}
                       alt="blog"
-                      className="w-full h-56 object-cover rounded-t-lg"
+                      className="w-full h-full object-cover group-hover:scale-110 transition duration-500"
                     />
-                    <div className="absolute top-4 left-4 bg-green-500 text-black font-semibold px-3 py-1 rounded-full text-sm">
+
+                    {/* Overlay */}
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent"></div>
+
+                    {/* Category */}
+                    <span className="absolute top-4 left-4 bg-blue-600 text-white text-xs font-semibold px-3 py-1 rounded-full">
                       {element.category}
-                    </div>
+                    </span>
                   </div>
-                  <div className="p-4 bg-gray-300 rounded-b-lg h-36 flex flex-col justify-between">
-                    <h1
-                      className="text-lg font-bold mb-2 overflow-hidden text-ellipsis"
-                      style={{ whiteSpace: "nowrap" }}
-                    >
+
+                  {/* Content */}
+                  <div className="p-5 h-40 flex flex-col justify-between">
+                    <h2 className="text-lg font-semibold text-gray-800 group-hover:text-blue-600 transition line-clamp-2">
                       {element.title}
-                    </h1>
-                    <div className="flex items-center">
+                    </h2>
+
+                    {/* Author */}
+                    <div className="flex items-center mt-4">
                       <img
                         src={element.adminPhoto}
-                        alt="author_avatar"
-                        className="w-10 h-10 rounded-full"
+                        alt="author"
+                        className="w-9 h-9 rounded-full object-cover border"
                       />
-                      <p className="ml-3 font-semibold text-black text-sm">
+                      <p className="ml-3 text-sm font-medium text-gray-700">
                         {element.adminName}
                       </p>
                     </div>
                   </div>
-                </Link>
-              </div>
-            );
-          })
-        ) : (
-          <div className=" flex h-screen items-center justify-center">
-            Loading....
-          </div>
-        )}
-      </Carousel>
+                </div>
+              </Link>
+            ))
+          ) : (
+            <div className="flex h-60 items-center justify-center text-gray-500">
+              Loading trending blogs...
+            </div>
+          )}
+        </Carousel>
+      </div>
     </div>
   );
 }
