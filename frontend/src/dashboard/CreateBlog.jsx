@@ -72,7 +72,7 @@ function CreateBlog() {
               onChange={(e) => setCategory(e.target.value)}
               className="w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-blue-500 outline-none"
             >
-              <option value="">Select category</option>
+              <option value="" disabled>Select category</option>
               <option value="Devotion">Devotion</option>
               <option value="Sports">Sports</option>
               <option value="Coding">Coding</option>

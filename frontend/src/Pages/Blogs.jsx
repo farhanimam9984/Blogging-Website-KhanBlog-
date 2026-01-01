@@ -10,7 +10,7 @@ function Blogs() {
       {/* Header */}
       <section className="bg-gradient-to-r from-indigo-600 to-blue-600 text-white py-16">
         <div className="max-w-6xl mx-auto px-6 text-center">
-          <h1 className="text-4xl font-bold mb-4">Explore Our Blogs</h1>
+          <h1 className="text-4xl font-bold pt-5 mb-4">Explore Our Blogs</h1>
           <p className="text-blue-100 max-w-2xl mx-auto">
             Insights, tutorials, and real-world experiences covering modern web
             development, technology, and programming best practices.
